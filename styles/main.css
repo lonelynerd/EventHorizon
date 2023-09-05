@@ -1,22 +1,13 @@
-@font-face {
-    font-family: 'Poppins';
-    font-weight: bold;
-    src: url('./Poppins-SemiBold.ttf') format('truetype');
-}
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    src: url('./Poppins-Medium.ttf') format('truetype');
-}
 
 :root {
-    --main: #0D0D0D;
-    --second: #4DC591;
-    --second-back: #4DC5914d;
-    --third: #FF7648;
-    --four: #F6F6F5;
-    --five: #757A7A;
-    --six: #BCC1CD;
+    --main: #171b25;
+    --second: #202020;
+    --second-back: #6F9EFF;
+    --third: #6F9EFF;
+    --four: white;
+    --five: white;
+    --six: #FFFFFF80;
+    --text: #202020;
     --course-height: 11rem;
 }
 
@@ -32,7 +23,7 @@ body {
 }
 
 p, a{
-    font-family: 'Poppins';
+    font-family: Inter, sans-serif;
 }
 
 #date {
@@ -105,7 +96,7 @@ p, a{
     width: fit-content;
     background-color: var(--third);
     border-radius: 1em;
-    color: var(--four);
+    color: var(--text);
     text-align: center;
 }
 
