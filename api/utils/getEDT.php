@@ -24,8 +24,8 @@ function edt($url): bool|array
     //return $basecal;
     $EDT = array();
     foreach ($basecal as $key => $val) {
-        $basecal[$key]["DTSTART"] = array($basecal[$key]["DTSTART"]->format("d_m_Y"), $basecal[$key]["DTSTART"]->format("H_i"), $basecal[$key]["DTSTART"]->format("D"));
-        $basecal[$key]["DTEND"] = array($basecal[$key]["DTEND"]->format("d_m_Y"), $basecal[$key]["DTEND"]->format("H_i"));
+        $basecal[$key]["DTSTART"] = array($basecal[$key]["DTSTART"]->format("Y_m_d"), $basecal[$key]["DTSTART"]->format("H_i"), $basecal[$key]["DTSTART"]->format("D"));
+        $basecal[$key]["DTEND"] = array($basecal[$key]["DTEND"]->format("Y_m_d"), $basecal[$key]["DTEND"]->format("H_i"));
         unset($basecal[$key]["DTSTAMP"]);
         unset($basecal[$key]["CREATED"]);
         unset($basecal[$key]["SEQUENCE"]);

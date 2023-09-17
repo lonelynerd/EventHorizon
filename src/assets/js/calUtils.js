@@ -25,10 +25,10 @@ export function convertDate(date, ishour) {
         //return typeof date;
         return false;
     }
-    let expr = ishour ? "^([0-9]{2})_([0-9]{2})$" : "^([0-9]{1,2})_([0-9]{1,2})_([0-9]{4})_([A-Za-z]{3})$";
+    let expr = ishour ? "^([0-9]{2})_([0-9]{2})$" : "^([0-9]{4})_([0-9]{1,2})_([0-9]{1,2})_([A-Za-z]{3})$";
     let res = date.match(expr);
     if (res === null) {
         return false
     }
-    return ishour ? `${res[1]}:${res[2]}` : `${res[4]} ${res[1]}/${res[2]}`;
+    return ishour ? `${res[1]}:${res[2]}` : `${res[4]} ${res[3]}/${res[2]}`;
 }
