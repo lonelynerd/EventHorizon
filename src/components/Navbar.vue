@@ -18,21 +18,21 @@ const themeMenu = ref({
           onClick: function () {
             switchTheme('light')
           },
-          imgLink: "/images/icons/light.png",
+          imgLink: "/edt/images/icons/light.png",
           shownTitle: "Light",
         },
         {
           onClick: function () {
             switchTheme('dark')
           },
-          imgLink: "/images/icons/dark.png",
+          imgLink: "/edt/images/icons/dark.png",
           shownTitle: "Dark"
         },
         {
           onClick: function () {
             switchTheme('system')
           },
-          imgLink: "/images/icons/system.png",
+          imgLink: "/edt/images/icons/system.png",
           shownTitle: "System"
         }
       ]
@@ -47,19 +47,19 @@ const calendars = ref({
       [
         {
           hrefLink: "https://imalonelynerd.fr/edt?url=https%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D31782%26projectId%3D0%26calType%3Dical%26nbWeeks%3D1%26displayConfigId%3D8",
-          imgLink: "/images/icons/calendar.png",
+          imgLink: "/edt/images/icons/calendar.png",
           shownTitle: "L3 TD1 TP1",
         },
         {
           hrefLink: "https://imalonelynerd.fr/edt?url=http%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D48262%26projectId%3D0%26calType%3Dical%26nbWeeks%3D4%26displayConfigId%3D8",
-          imgLink: "/images/icons/calendar.png",
+          imgLink: "/edt/images/icons/calendar.png",
           shownTitle: "L3 TD1 TP2",
         },
         {
           onClick: function () {
             chooseCalendar()
           },
-          imgLink: "/images/icons/misc.png",
+          imgLink: "/edt/images/icons/misc.png",
           shownTitle: "Custom..."
         }
       ]
@@ -73,10 +73,10 @@ const calendars = ref({
     <CurrentDate/>
     <div class="navbar">
       <LinkButton @click="reloadPage" shownTitle="Reload"
-                  imgLink="/images/icons/top/today.png"
+                  imgLink="/edt/images/icons/top/today.png"
                   :isImportant="false"/>
-      <MenuButton buttonId="calendar" imgLink="/images/icons/top/switch.png" shown-title="Switch"/>
-      <MenuButton buttonId="theme" imgLink="/images/icons/top/theme.png" shownTitle="Theme" :isImportant="true"/>
+      <MenuButton buttonId="calendar" imgLink="/edt/images/icons/top/switch.png" shown-title="Switch"/>
+      <MenuButton buttonId="theme" imgLink="/edt/images/icons/top/theme.png" shownTitle="Theme" :isImportant="true"/>
     </div>
   </div>
   <HiddenMenu :menuOptions="themeMenu" menuId="theme" id="theme"/>

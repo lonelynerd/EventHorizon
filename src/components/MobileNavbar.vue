@@ -13,21 +13,21 @@ const themeMenu = ref({
           onClick: function () {
             switchTheme('light')
           },
-          imgLink: "/images/icons/light.png",
+          imgLink: "/edt/images/icons/light.png",
           shownTitle: "Light",
         },
         {
           onClick: function () {
             switchTheme('dark')
           },
-          imgLink: "/images/icons/dark.png",
+          imgLink: "/edt/images/icons/dark.png",
           shownTitle: "Dark"
         },
         {
           onClick: function () {
             switchTheme('system')
           },
-          imgLink: "/images/icons/system.png",
+          imgLink: "/edt/images/icons/system.png",
           shownTitle: "System"
         }
       ]
@@ -40,14 +40,14 @@ const linksMenu = ref({
           onClick: function () {
             location.reload();
           },
-          imgLink: "/images/icons/top/today.png",
+          imgLink: "/edt/images/icons/top/today.png",
           shownTitle: "Reload",
         },
         {
           onClick: function () {
             showMenuUnusual("mcals");
           },
-          imgLink: "/images/icons/top/switch.png",
+          imgLink: "/edt/images/icons/top/switch.png",
           shownTitle: "Switch between calendars",
         }
       ]
@@ -58,19 +58,19 @@ const calendars = ref({
       [
         {
           hrefLink: "https://imalonelynerd.fr/edt?url=https%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D31782%26projectId%3D0%26calType%3Dical%26nbWeeks%3D1%26displayConfigId%3D8",
-          imgLink: "/images/icons/calendar.png",
+          imgLink: "/edt/images/icons/calendar.png",
           shownTitle: "L3 TD1 TP1",
         },
         {
           hrefLink: "https://imalonelynerd.fr/edt?url=http%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D48262%26projectId%3D0%26calType%3Dical%26nbWeeks%3D4%26displayConfigId%3D8",
-          imgLink: "/images/icons/calendar.png",
+          imgLink: "/edt/images/icons/calendar.png",
           shownTitle: "L3 TD1 TP2",
         },
         {
           onClick: function () {
             chooseCalendar()
           },
-          imgLink: "/images/icons/misc.png",
+          imgLink: "/edt/images/icons/misc.png",
           shownTitle: "Custom..."
         }
       ]
@@ -83,9 +83,9 @@ const calendars = ref({
     <HiddenMenu :menuOptions="linksMenu" menuId="links" id="links"/>
     <HiddenMenu :menuOptions="themeMenu" menuId="mtheme" id="mtheme"/>
     <HiddenMenu :menuOptions="calendars" menuId="mcals" id="mcals"/>
-    <MenuButton buttonId="links" imgLink="/images/icons/top/list.png" shownTitle=""/>
+    <MenuButton buttonId="links" imgLink="/edt/images/icons/top/list.png" shownTitle=""/>
     <CurrentDate/>
-    <MenuButton buttonId="mtheme" imgLink="/images/icons/top/theme.png" shownTitle="" :isImportant="true"/>
+    <MenuButton buttonId="mtheme" imgLink="/edt/images/icons/top/theme.png" shownTitle="" :isImportant="true"/>
   </div>
 </template>
 
