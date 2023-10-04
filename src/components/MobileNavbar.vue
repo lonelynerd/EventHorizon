@@ -4,7 +4,7 @@ import HiddenMenu from "@/components/HiddenMenu.vue";
 import CurrentDate from "@/components/CurrentDate.vue";
 import {ref} from "vue";
 import {switchTheme} from "@/assets/js/darkMode";
-import {showMenuUnusual, chooseCalendar} from "@/assets/js/calUtils"
+import {showMenuUnusual} from "@/assets/js/calUtils"
 import calendarPresets from "@/assets/json/presets.json"
 
 const themeMenu = ref({
