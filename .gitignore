@@ -2,3 +2,5 @@ node_modules
 .idea
 .trash
 dist
+
+src/assets/json/presets.json
