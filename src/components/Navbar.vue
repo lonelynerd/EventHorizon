@@ -4,8 +4,8 @@ import HiddenMenu from "@/components/HiddenMenu.vue"
 import MenuButton from "@/components/MenuButton.vue";
 import {ref} from "vue";
 import {switchTheme} from "@/assets/js/darkMode"
-import {chooseCalendar} from "@/assets/js/calUtils";
 import CurrentDate from "@/components/CurrentDate.vue";
+import calendarPresets from "@/assets/json/presets.json"
 
 defineProps([
   "alignRight"
@@ -15,25 +15,25 @@ const themeMenu = ref({
   menuButtons:
       [
         {
-          onClick: function () {
+          click: function () {
             switchTheme('light')
           },
-          imgLink: "/edt/images/icons/light.png",
-          shownTitle: "Light",
+          img: "/edt/images/icons/light.png",
+          name: "Light",
         },
         {
-          onClick: function () {
+          click: function () {
             switchTheme('dark')
           },
-          imgLink: "/edt/images/icons/dark.png",
-          shownTitle: "Dark"
+          img: "/edt/images/icons/dark.png",
+          name: "Dark"
         },
         {
-          onClick: function () {
+          click: function () {
             switchTheme('system')
           },
-          imgLink: "/edt/images/icons/system.png",
-          shownTitle: "System"
+          img: "/edt/images/icons/system.png",
+          name: "System"
         }
       ]
 })
@@ -42,29 +42,11 @@ function reloadPage() {
   location.reload();
 }
 
-const calendars = ref({
-  menuButtons:
-      [
-        {
-          hrefLink: "https://imalonelynerd.fr/edt?url=https%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D31782%26projectId%3D0%26calType%3Dical%26nbWeeks%3D1%26displayConfigId%3D8",
-          imgLink: "/edt/images/icons/calendar.png",
-          shownTitle: "L3 TD1 TP1",
-        },
-        {
-          hrefLink: "https://imalonelynerd.fr/edt?url=http%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D48262%26projectId%3D0%26calType%3Dical%26nbWeeks%3D4%26displayConfigId%3D8",
-          imgLink: "/edt/images/icons/calendar.png",
-          shownTitle: "L3 TD1 TP2",
-        },
-        {
-          onClick: function () {
-            chooseCalendar()
-          },
-          imgLink: "/edt/images/icons/misc.png",
-          shownTitle: "Custom..."
-        }
-      ]
-})
-
+/*{
+  "name": "",
+    "img": "",
+    "url": ""
+}*/
 
 </script>
 
@@ -80,7 +62,7 @@ const calendars = ref({
     </div>
   </div>
   <HiddenMenu :menuOptions="themeMenu" menuId="theme" id="theme"/>
-  <HiddenMenu :menuOptions="calendars" menuId="calendar" id="calendar"/>
+  <HiddenMenu :menuOptions="calendarPresets" menuId="calendar" id="calendar" add-custom="true"/>
 </template>
 
 <style scoped>

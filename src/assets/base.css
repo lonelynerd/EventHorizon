@@ -1,20 +1,20 @@
 :root[data-theme="theme-light"] {
     --bg1: #ffffff;
-    --bg2: #f1eeff;
-    --bg3: #ffaa2c;
+    --bg2: #EEEEEE;
+    --bg3: #d0a0ff;
     --text: #202020;
-    --text2: white;
+    --text2: #202020;
     --code: #00000020;
     --effect: brightness(90%);
     --bg-effect: brightness(100%);
 }
 
 :root[data-theme="theme-dark"] {
-    --bg1: #161321;
-    --bg2: #27233f;
-    --bg3: #E7A382;
+    --bg1: #080808;
+    --bg2: #101010;
+    --bg3: #0e002f;
     --text: white;
-    --text2: #202020;
+    --text2: white;
     --code: #FFFFFF20;
     --effect: brightness(125%);
     --bg-effect: brightness(50%);

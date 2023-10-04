@@ -1,8 +1,9 @@
 <script setup>
 import MenuOption from "@/components/MenuOption.vue";
+import {chooseCalendar} from "@/assets/js/calUtils";
 
 const props = defineProps(
-    ['menuOptions',"menuId"]
+    ['menuOptions', "menuId", "addCustom"]
 )
 
 const options = props.menuOptions.menuButtons;
@@ -18,7 +19,18 @@ function hideMenu() {
     <div>
       <MenuOption
           v-for="elem in options"
-          v-bind="elem"/>
+          :href-link="elem.url"
+          :img-link="elem.img"
+          :shown-title="elem.name"
+          @click="elem.click"
+      />
+      <MenuOption
+          v-if="addCustom"
+          @click="chooseCalendar()"
+          img-link="/edt/images/icons/misc.png"
+          shown-title="Custom..."
+
+      />
     </div>
   </div>
 </template>
