@@ -1,4 +1,4 @@
-const urlCheckObj = new RegExp("^https:\/\/adecampus\.univ-rouen\.fr\/jsp\/custom\/modules\/plannings\/anonymous_cal\.jsp\?resources=([0-9]+)&projectId=([0-9]+)&calType=(.*)&nbWeeks=([0-9]+)&displayConfigId=([0-9]+)$");
+const urlCheckObj = new RegExp("^http:\/\/adecampus\.univ-rouen\.fr\/jsp\/custom\/modules\/plannings\/anonymous_cal\.jsp\?resources=[0-9]+&projectId=[0-9]+&calType=.*&nbWeeks=[0-9]+&displayConfigId=[A-Za-z0-9]+$","gm");
 
 export function showMenuUnusual(id) {
     let elem = document.getElementById(id);
@@ -10,8 +10,10 @@ export function showMenuUnusual(id) {
 
 export function chooseCalendar() {
     let url = prompt("Input your calendar's link below :");
+    if(url === null){
+        return false;
+    }
     /*if (!urlCheckObj.test(url)) {
-      //console.log(url);
       alert("Invalid URL. Please try again.");
       return false;
     }*/

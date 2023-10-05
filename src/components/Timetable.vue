@@ -3,6 +3,8 @@
 import {convertDate} from "@/assets/js/calUtils";
 import TimeEvent from "@/components/Event.vue";
 import {ref} from "vue";
+import calendarPresets from "@/assets/json/presets.json"
+import ErrorMessage from "@/components/ErrorMessage.vue";
 
 function getURLValues() {
 
@@ -23,19 +25,26 @@ function getURLValues() {
 let callink = getURLValues()["url"];
 
 if (callink === undefined || callink === "null") {
-  window.location.href = "?url=http%3A%2F%2Fadecampus.univ-rouen.fr%2Fjsp%2Fcustom%2Fmodules%2Fplannings%2Fanonymous_cal.jsp%3Fresources%3D48262%26projectId%3D0%26calType%3Dical%26nbWeeks%3D4%26displayConfigId%3D8";
+  callink = calendarPresets.default;
 }
 
 async function fetchCal() {
   const response = await fetch("https://imalonelynerd.fr/edt/api/?url=" + encodeURIComponent(callink));
-  return response.json();
+  let jsoned = await response.json();
+  console.log(jsoned)
+  if(jsoned === undefined || jsoned.hasOwnProperty("error")){
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    return false;
+  }
+  return jsoned;
 }
 
 const fetchedCal = ref(await fetchCal());
 </script>
 
 <template>
-  <div class="timetable">
+  <ErrorMessage v-if="fetchedCal === false" :link-used="callink"/>
+  <div class="timetable" v-if="fetchedCal !== false">
     <div v-for='key in Object.keys(fetchedCal)'>
       <p>{{ convertDate(key, false) }}</p>
       <div class="day">
