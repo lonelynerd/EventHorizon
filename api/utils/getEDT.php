@@ -21,7 +21,6 @@ function edt($url): bool|array
     $basecal = $cal->parse($url);
     if (gettype($basecal) == ENT_COMPAT) return false;
     if (count($basecal) == 0) return false;
-    //return $basecal;
     $EDT = array();
     foreach ($basecal as $key => $val) {
         $basecal[$key]["DTSTART"] = array($basecal[$key]["DTSTART"]->format("Y_m_d"), $basecal[$key]["DTSTART"]->format("H_i"), $basecal[$key]["DTSTART"]->format("D"));

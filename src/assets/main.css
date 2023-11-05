@@ -5,12 +5,15 @@ html {
 }
 
 body {
-    background: var(--bg1);;
+    background: var(--bg);
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
     font-family: Inter, sans-serif;
     color: var(--text);
-    animation: Hewwo ease-out 0.75s;
     transition: all 0.25s;
 }
+
 
 a {
     color: inherit !important;
@@ -32,25 +35,18 @@ code {
 
 span {
     font-size: 0.8em;
-    opacity: 50%;
+    opacity: 0.5;
 }
 
-a:hover {
-    filter: var(--effect);
-}
-
-/*@media only screen and (orientation: landscape) {
-    body > div > div:not(.navbar-container, .mobile-navbar-container) {
-        margin: 16px 0;
-    }
-}*/
-
-@media only screen and (orientation: portrait) {
+@media screen and (orientation: portrait) {
     html {
         font-size: 3vw;
     }
+}
 
-    /*body > div > div:not(.navbar-container, .mobile-navbar-container) {
-        margin: 3vh 0;
-    }*/
+
+@media screen and (orientation: landscape) {
+    html {
+        font-size: 0.9em;
+    }
 }

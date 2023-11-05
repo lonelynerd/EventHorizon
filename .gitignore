@@ -3,4 +3,4 @@ node_modules
 .trash
 dist
 
-src/assets/json/presets.json
+src/assets/json/presets.js

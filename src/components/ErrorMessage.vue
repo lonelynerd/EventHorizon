@@ -1,20 +1,11 @@
 <script setup>
-defineProps(["linkUsed"]);
-
-let rick = setTimeout(function () {
-  let audio = new Audio('/edt/music/rick.mp3');
-  audio.play();
-}, 5000);
-
-/*let curTheme = document.querySelector('html').dataset.theme === "theme-light";
-document.documentElement.style.setProperty('--bg3', curTheme?"#FFA0A0":"#2F0000");*/
 </script>
 
 <template>
   <div class="error">
     <div>
-      <img src="/images/error.png">
-      <h1>An error occured</h1>
+      <img src="/images/error.webp">
+      <h1>An error occurred</h1>
       <p>The given URL returns invalid or corrupt data. Please try again.</p>
     </div>
   </div>
@@ -23,15 +14,12 @@ document.documentElement.style.setProperty('--bg3', curTheme?"#FFA0A0":"#2F0000"
 <style scoped>
 @media screen and (orientation: landscape) {
   .error {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     overflow: scroll;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 60vh;
   }
 
   .error > div {
@@ -39,14 +27,11 @@ document.documentElement.style.setProperty('--bg3', curTheme?"#FFA0A0":"#2F0000"
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 16px;
   }
 
   .error > div > * {
     margin: 0;
-  }
-
-  .error > div > *:not(:last-child) {
-    margin-bottom: 16px;
   }
 
   .error > div > img {
@@ -56,32 +41,26 @@ document.documentElement.style.setProperty('--bg3', curTheme?"#FFA0A0":"#2F0000"
 
 @media screen and (orientation: portrait) {
   .error {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
     overflow: scroll;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    height: 60vh;
   }
 
   .error > div {
-    width: 80%;
+    width: 75vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
+    gap: 2vh;
   }
 
   .error > div > * {
     margin: 0;
-  }
-
-  .error > div > *:not(:last-child) {
-    margin-bottom: 2vh;
+    text-align: center;
   }
 
   .error > div > img {

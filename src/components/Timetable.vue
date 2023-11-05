@@ -1,19 +1,16 @@
 <script setup>
 
 import {convertDate} from "@/assets/js/calUtils";
-import TimeEvent from "@/components/Event.vue";
+import Event from "@/components/Event.vue";
 import {ref} from "vue";
-import calendarPresets from "@/assets/json/presets.json"
 import ErrorMessage from "@/components/ErrorMessage.vue";
+import WelcomeMessage from "@/components/WelcomeMessage.vue";
 
 function getURLValues() {
-
   let search = window.location.search.replace(/^\?/, '').replace(/\+/g, ' ');
   let values = {};
-
   if (search.length) {
     let part, parts = search.split('&');
-
     for (let i = 0, iLen = parts.length; i < iLen; i++) {
       part = parts[i].split('=');
       values[part[0]] = window.decodeURIComponent(part[1]);
@@ -24,53 +21,80 @@ function getURLValues() {
 
 let callink = getURLValues()["url"];
 
+const noLink = ref(false);
+const fetchedCal = ref(false);
+
 if (callink === undefined || callink === "null") {
-  callink = calendarPresets.default;
+  noLink.value = true;
+} else {
+  fetchedCal.value = await fetchCal();
 }
 
 async function fetchCal() {
-  const response = await fetch("https://imalonelynerd.fr/edt/api/?url=" + encodeURIComponent(callink));
+  const response = await fetch("https://horizon.imalonelynerd.fr/api/?url=" + encodeURIComponent(callink));
   let jsoned = await response.json();
-  console.log(jsoned)
-  if(jsoned === undefined || jsoned.hasOwnProperty("error")){
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+  if (jsoned === undefined || jsoned.hasOwnProperty("error")) {
     return false;
   }
   return jsoned;
 }
 
-const fetchedCal = ref(await fetchCal());
+function isDay(date){
+  let d = new Date();
+  let dt = `${d.getFullYear()}_${d.getMonth() + 1}_${d.getDate() < 10 ? '0' + d.getDate() : d.getDate()}`;
+  return date.startsWith(dt);
+}
+
 </script>
 
 <template>
-  <ErrorMessage v-if="fetchedCal === false" :link-used="callink"/>
-  <div class="timetable" v-if="fetchedCal !== false">
-    <div v-for='key in Object.keys(fetchedCal)'>
-      <p>{{ convertDate(key, false) }}</p>
-      <div class="day">
-        <TimeEvent v-for="elem in fetchedCal[key]"
-                   :mainTitle="elem['SUMMARY']"
-                   :startTime="elem['DTSTART'][1]"
-                   :endTime="elem['DTEND'][1]"
-                   :teacher="elem['DESCRIPTION']"
-                   :location="elem['LOCATION']"
-        />
+  <div class="ttcontainer">
+    <WelcomeMessage v-if="noLink === true"/>
+    <ErrorMessage v-if="!fetchedCal && !noLink"/>
+    <div class="timetable" v-if="fetchedCal !== false">
+      <div v-for='key in Object.keys(fetchedCal)'>
+        <p :class="{ 'isday' : isDay(key)}">{{ convertDate(key, false) }}</p>
+        <div class="day">
+          <Event v-for="elem in fetchedCal[key]"
+                 :mainTitle="elem['SUMMARY']"
+                 :startTime="elem['DTSTART'][1]"
+                 :endTime="elem['DTEND'][1]"
+                 :teacher="elem['DESCRIPTION']"
+                 :location="elem['LOCATION']"
+          />
+        </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <style scoped>
 
 @media only screen and (orientation: landscape) {
-  .timetable {
+  .ttcontainer {
     position: absolute;
+    top: 128px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: scroll;
-    padding: 96px 32px 32px;
+    padding: 32px;
+    border-radius: 16px 16px 0 0;
     display: flex;
     flex-direction: row;
     align-items: start;
     justify-content: start;
+    background: var(--bg);
+    animation: Hewwo ease-out 0.75s;
+  }
+
+  .timetable {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    gap: 16px;
   }
 
   .timetable > div {
@@ -78,66 +102,90 @@ const fetchedCal = ref(await fetchCal());
     flex-direction: column;
     justify-content: start;
     align-items: center;
-  }
-
-  .timetable > div:not(:last-child) {
-    margin-right: 16px;
+    gap: 24px;
   }
 
   .timetable > div > p {
     text-align: center;
     font-weight: bold;
-    background: var(--bg2);
+    background: var(--widget);
     width: 60%;
     border-radius: 999px;
     padding: 8px;
+    margin: 0;
   }
 
   .day {
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 16px;
   }
 
-  .day > div:not(:last-child) {
-    margin-bottom: 16px;
+  .isday {
+    background: var(--widget-imp) !important;
   }
 }
 
 @media only screen and (orientation: portrait) {
-  .timetable {
-    width: 88%;
+  .ttcontainer {
     position: absolute;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    bottom: 0;
     overflow: scroll;
-    padding: 8vh 4% 4% 4%;
+    padding: 3vh;
+    border-radius: 2vh 2vh 0 0;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+    background: var(--bg);
+    animation: Hewwo ease-out 0.75s;
+  }
+
+  .timetable {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 6vh;
   }
 
   .timetable > div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-  }
-
-  .timetable > div:not(:last-child) {
-    margin-bottom: 4vh;
+    gap: 2vh;
   }
 
   .timetable > div > p {
     text-align: center;
     font-weight: bold;
-    background: var(--bg2);
-    width: 30%;
-    border-radius: 999px;
-    padding: 1.5vh;
+    background: var(--widget);
+    width: 60%;
+    border-radius: 20vh;
+    padding: 1vh;
+    margin: 0;
   }
 
   .day {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 2vh;
   }
 
-  .day > div:not(:last-child) {
-    margin-bottom: 2vh;
+  .isday {
+    background: var(--widget-imp) !important;
   }
 }
 </style>

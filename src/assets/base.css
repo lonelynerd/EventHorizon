@@ -1,21 +1,25 @@
-:root[data-theme="theme-light"] {
-    --bg1: #ffffff;
-    --bg2: #EEEEEE;
-    --bg3: #d0a0ff;
+:root[data-theme="theme-sage"] {
+    --bg: #ffffff;
+    --bg-img: url('/bg/sage.webp') center center no-repeat, var(--bg);
+    --widget: #fff2f5;
+    --widget-imp: #ffd5df;
+    --important: #cfff7d;
     --text: #202020;
-    --text2: #202020;
-    --code: #00000020;
+    --icon: brightness(0) saturate(100%) invert(31%) sepia(95%) saturate(1728%) hue-rotate(253deg) brightness(99%) contrast(105%);
+    --icon-imp: brightness(0) saturate(100%) invert(12%) sepia(0%) saturate(1134%) hue-rotate(315deg) brightness(99%) contrast(98%);
     --effect: brightness(90%);
     --bg-effect: brightness(100%);
 }
 
-:root[data-theme="theme-dark"] {
-    --bg1: #080808;
-    --bg2: #101010;
-    --bg3: #0e002f;
+:root[data-theme="theme-stars"] {
+    --bg: #0c0b23;
+    --bg-img: url('/bg/stars.webp') center center no-repeat, var(--bg);
+    --widget: #181744;
+    --widget-imp: #252369;
+    --important: #FF5263;
+    --icon: brightness(0) saturate(100%) invert(56%) sepia(36%) saturate(632%) hue-rotate(209deg) brightness(106%) contrast(102%);
+    --icon-imp: brightness(2);
     --text: white;
-    --text2: white;
-    --code: #FFFFFF20;
     --effect: brightness(125%);
     --bg-effect: brightness(50%);
 }
@@ -47,5 +51,19 @@
 
     to {
         transform: translateY(0%);
+    }
+}
+
+@keyframes HewwoBg {
+    0% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
     }
 }

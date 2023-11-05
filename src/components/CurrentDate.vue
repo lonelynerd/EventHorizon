@@ -3,13 +3,13 @@ import {ref} from "vue";
 
 Date.prototype.dayToString = function () {
   let days = {
-    "0": "Monday",
-    "1": "Tuesday",
-    "2": "Wednesday",
-    "3": "Thursday",
-    "4": "Friday",
-    "5": "Saturday",
-    "6": "Sunday"
+    "1": "Monday",
+    "2": "Tuesday",
+    "3": "Wednesday",
+    "4": "Thursday",
+    "5": "Friday",
+    "6": "Saturday",
+    "0": "Sunday"
   }
   return days[this.getDay()];
 };
@@ -86,29 +86,19 @@ const currentDate = ref(new Date());
   }
 
   .date > h1 {
-    font-size: 1.5em;
-    margin: 0 1vh 0 0;
+    font-size: 3em;
   }
 
   .date > div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: start;
     justify-content: start;
   }
 
   .date > div > * {
     margin: 0;
-    font-size: 1.5em;
-    font-weight: lighter;
-  }
-
-  .date > div > *:first-child {
-    display: none;
-  }
-
-  .date > div > *:not(:last-child) {
-    margin-right: 1vh;
+    font-size: 1.125em;
   }
 }
 </style>

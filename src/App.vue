@@ -1,24 +1,21 @@
 <script setup>
-import Navbar from "@/components/Navbar.vue"
-import MobileNavbar from "@/components/MobileNavbar.vue";
-import {ref, Suspense} from "vue";
+import {Suspense} from "vue";
 import Timetable from "@/components/Timetable.vue";
+import Navbar from "@/components/navbarComponements/Navbar.vue";
+import MobileNavbar from "@/components/navbarComponements/MobileNavbar.vue";
+import Background from "@/components/Background.vue";
 
-document.querySelector('html').dataset.theme = `theme-dark`;
+document.querySelector('html').dataset.theme = `theme-stars`;
 
 </script>
 
 <template>
-  <Navbar :alignRight="false"/>
+  <Navbar/>
   <MobileNavbar/>
-
   <Suspense>
-    <template #fallback>
-    </template>
-    <template #default>
-      <Timetable/>
-    </template>
+    <Timetable/>
   </Suspense>
+  <Background />
 </template>
 
 <style scoped>
