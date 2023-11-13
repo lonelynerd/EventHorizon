@@ -8,6 +8,7 @@ defineProps([
   'endTime',
   'teacher',
   'location',
+  'isDay'
 ])
 
 function spanner(text) {
@@ -19,16 +20,16 @@ function removeParenthesis(text) {
   return text.replace("/\"/\([^()]*\) */g");
 }
 
-function isNow(sT, eT){
+function isNow(sT, eT) {
   let d = new Date();
   let dt = `${d.getHours()}_${d.getMinutes()}`;
-  return sT <= dt <= eT;
+  return sT <= dt && dt <= eT;
 }
 
 </script>
 
 <template>
-  <div class="event" :class="{ 'isnow' : isNow(startTime, endTime) }">
+  <div class="event" :class="{ 'isnow' : isNow(startTime, endTime) && isDay }">
     <h1 v-html="spanner(mainTitle)"></h1>
     <div>
       <div>

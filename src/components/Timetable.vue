@@ -61,6 +61,7 @@ function isDay(date){
                  :endTime="elem['DTEND'][1]"
                  :teacher="elem['DESCRIPTION']"
                  :location="elem['LOCATION']"
+                 :is-day="isDay(key)"
           />
         </div>
       </div>
