@@ -12,7 +12,10 @@ defineProps([
 ])
 
 function spanner(text) {
-  let res = text.match("^([A-Za-z]{2}[0-9]{0,1})(.*)$");
+  let res = text.match("^((?:CM|TD|TP|CC)[0-9]{0,1})(.*)$");
+  if(res == null){
+    return text;
+  }
   return `<span>${res[1]}</span>${res[2]}`;
 }
 
@@ -38,11 +41,11 @@ function isNow(sT, eT) {
       </div>
       <div>
         <img src="/icons/event/location.webp">
-        <p>{{ removeParenthesis(location) }}</p>
+        <p>{{ location === '' || location === null ? "(missing information)" : removeParenthesis(location)}}</p>
       </div>
       <div>
         <img src="/icons/event/teacher.webp">
-        <p>{{ teacher }}</p>
+        <p>{{ teacher === '' || teacher === null ? "(missing information)" : teacher }}</p>
       </div>
 
     </div>
